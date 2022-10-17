@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\BookModel;
 
 
+
 class BookController extends Controller
 {
     /**
@@ -41,6 +42,13 @@ class BookController extends Controller
         //
         // dd($request);
         $book = new BookModel();
+        $request->validate([
+            'book_title' => 'required',
+            'book_image' => 'required
+            ',
+            'book_author' => 'required'
+        ]);
+
         $book->book_title = $request->book_title;
         $book->book_description = $request->book_description;
         $book->book_author = $request->book_author;
@@ -69,6 +77,8 @@ class BookController extends Controller
     public function edit($id)
     {
         //
+        $book = BookModel::find($id);
+        return view('edit', compact('book'));
     }
 
     /**
@@ -81,6 +91,13 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $book = BookModel::find($id);
+        $book->book_title = $request->book_title;
+        $book->book_description = $request->book_description;
+        $book->book_author = $request->book_author;
+        $book->book_image = $request->book_image;
+        $book->update();
+        return redirect('index');
     }
 
     /**
@@ -92,5 +109,8 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+        $book = BookModel::find($id);
+        $book->delete();
+        return redirect('index');
     }
 }

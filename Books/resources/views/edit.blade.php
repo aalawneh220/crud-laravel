@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>addBooks</title>
+    <title>edit and update</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 </head>
@@ -17,34 +17,35 @@
     @endif
 
     <div class="constant w-25 d-flex justify-content-center bg-light">
-    <form action="/store" method="POST" >
+    <form action={{url("update/".$book->id)}} method="POST" >
        
 @csrf
+@method('PUT')
 
         <div class="form-group">
           <label for="exampleInputEmail1">book title</label>
-          <input name = "book_title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+          <input name = "book_title" type="text" class="form-control" value="{{$book->book_title}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
           
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">book description</label>
-            <input name = "book_description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+            <input name = "book_description" type="text" class="form-control" value="{{$book->book_description}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
             
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">book author</label>
-            <input name = "book_author" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+            <input name = "book_author" type="text" class="form-control" value="{{$book->book_author}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
             
           </div>
         <div class="form-group">
           <label for="exampleInputPassword1">image</label>
-          <input  name = "book_image"type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+          <input  name = "book_image"type="text" class="form-control" value="{{$book->book_image}}" id="exampleInputPassword1" placeholder="">
         </div>
         {{-- <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> --}}<br>
-        <button type="submit" class="btn btn-warning">Add Books</button>
+        <button type="submit" class="btn btn-warning">Update</button>
         
       </form>
     </div>

@@ -55,8 +55,10 @@
         <div class="card-body">
           <h5 class="card-title">{{$item['book_tittle']}}</h5>
           <p class="card-text">{{$item['book_description']}} {{$item['book_author']}}</p>
-          <a href="#" class="btn btn-info">Update</a>
-          <a href="#" class="btn btn-danger">Delete</a>
+          <a href="{{url('edit/'.$item['id'])}}" class="btn btn-info">Edit</a>
+          <a href="{{url('delete/'.$item['id'])}}" class="btn btn-danger" onclick="return confirm('Are you sure?')"
+          >Delete</a>
+          {{-- <a href="{{url('delete/'.$item['id'])}}" class="btn btn-danger">Soft Delete</a> --}}
         </div>
       </div>
       
